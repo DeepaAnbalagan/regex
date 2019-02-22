@@ -1,0 +1,18 @@
+/**
+ * This is to validate currencies with Pound, Yen, Euro and Rupee and, finds out CVV (either 3 digits or 4 digits)
+ */
+public class CurrencyValidation{
+
+    public static void main(String args[]){
+        String content = "$123,900"
+        String regex =  "(?i)\\b(?<!(\\p{Sc}|(&yen;)|&pound;|(.-)?\\s|(.-)?|/|((\\d|Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)([- \\t]{0,4}[,]{0,3}|[\\. \\t]{0,4}[,]{0,3})))[ \\t]{0,4})[0-9]{3,4}(?!-inc)(?![ \\t]{0,4}(\\p{Sc}|(&yen;)|&pound;|/|%|(([- \\t]{0,4}[,]{0,3}|[\\. \\t]{0,4}[,]{0,3})(\\d|((Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\\b)))))";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(content);
+        while (matcher.find())
+        {
+            System.out.print("Start index: " + matcher.start());
+            System.out.print(" End index: " + matcher.end() + " ");
+            System.out.println(" : " + matcher.group());
+        }
+    }
+}
